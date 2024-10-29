@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Press+Start+2P&display=swap" rel="stylesheet">
+        <link type="image/png" sizes="16x16" rel="icon" href="../images/icons8-warship-16.png">
+        <title>Battleship</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    
+    <body>
+        <h3 id="game-step">
+            <div id="status-text"></div>
+            <div id="hit-animation-bg"></div>
+        </h3>
+        <div id="player-container">
+            <div class="board-content">
+                <div class="board-grid" id="r-board-grid"></div>
+                <span>Your board</span>
+            </div>
+        </div>
+        <div id="computer-container">
+            <div class="board-content">
+                <div class="board-grid" id="c-board-grid"></div>
+                <span>Opponent's board</span>
+            </div>
+
+            <dialog id="computer-board-modal">
+                <button id="play-button">play</button>
+            </dialog>
+        </div>
+        <dialog id="end-modal">
+            <span id="winner-text"></span>
+            <button>play again</button>
+        </dialog>
+        <script src="dist/index.js"></script>
+    </body>
+</html>

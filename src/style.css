@@ -1,0 +1,228 @@
+:root {
+    --board-grid-width: 410px;
+    --board-grid-height: 410px;
+    --board-grid-background: rgb(26, 120, 197);
+    --end-modal-color2: rgba(0, 0, 0, 0.4);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+    font-family: "Press Start 2P", system-ui;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+
+:focus {
+    outline: none;
+}
+
+.board-grid {
+    border: 1px solid var(--board-grid-background);
+    background-color: var(--board-grid-background);
+
+    height: var(--board-grid-height); 
+    width: var(--board-grid-width);
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    gap: 1px;
+}
+
+.cell {
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cell-ship {
+    background-color: var(--board-grid-background);
+}
+
+.cell-hit {
+    background-color: rgb(255, 116, 116);
+}
+
+.cell-miss {
+    background-color: rgb(238, 238, 238);
+}
+
+.cell-sunk {
+    background-color: rgb(213, 24, 24);
+    font-size: 2rem;
+    font-weight: 100;
+}
+
+.board-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+#player-container,
+#computer-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+#end-modal {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.4));
+
+    position: absolute;
+    transform: translate(-50%, -50%); 
+    height: 250px;
+    width: 400px;
+    border-radius: 25px;
+    top: 50%;
+    left: 50%;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    button {
+        background-color: transparent;
+        border: 1px solid rgb(66, 66, 66);
+        position: absolute;
+        bottom: 16px;
+        border-radius: 16px;
+        padding: 6px;
+        font-weight: 600;
+    }
+
+    button:active {
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+
+}
+
+#winner-text {
+    color: white;
+    font-size: 3rem;
+}
+
+#end-modal:modal {
+    display: flex;
+    animation: slowFade 500ms;
+}
+
+#end-modal:focus {
+    outline: none;
+}
+
+#end-modal * {
+    color: white;
+}
+
+::backdrop {
+    background-color: rgba(255, 255, 255, 0.792);
+}
+
+#game-step {
+    font-size: 1.5rem;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#computer-board-modal {
+    background-color: rgba(255, 255, 255, 0.792);
+    position: absolute;
+    height: 100%;
+    width: 100%;
+
+    button {
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -110%);
+
+        border-radius: 16px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+        padding-left: 15px;
+        padding-right: 15px;
+
+
+        font-weight: 600;
+        background: linear-gradient(rgb(202, 255, 202), rgb(161, 207, 161))
+    }
+
+    button:active {
+        background: linear-gradient(rgb(174, 221, 174), rgb(131, 168, 131))
+    }
+}
+
+@keyframes slowFade {
+    0% {
+        opacity: 0.5;
+        transform: translate(-50%, -50%) scale(0.955555);
+    }
+
+    10% {
+        transform: translate(-50%, -50%) scale(0.97);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes hitBackgroundSwell {
+    0% {
+        transform: translate(0, -23px) scale(0);
+    }
+    
+    20% {
+        transform: translate(0, -23px) scale(1);
+    }
+    
+    80% {
+        transform: translate(0, -23px) scale(1);
+    }
+    
+    100% {
+        transform: translate(0, -23px) scale(0);
+    }
+}
+
+.hit {
+    background-image: radial-gradient(orange, red, white, white);
+    animation: hitBackgroundSwell 1.5s; 
+}
+
+#status-text {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+}
+
+#hit-animation-bg {
+    z-index: 1;
+    position: absolute;
+    transform: translate(0, -23px);
+    height: 100%;
+    width: 100%;
+}
